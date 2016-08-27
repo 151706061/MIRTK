@@ -1,8 +1,8 @@
 # ============================================================================
 # Medical Image Registration ToolKit (MIRTK)
 #
-# Copyright 2013-2015 Imperial College London
-# Copyright 2013-2015 Andreas Schuh
+# Copyright 2013-2016 Imperial College London
+# Copyright 2013-2016 Andreas Schuh
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,59 +23,73 @@
 ##############################################################################
 
 set(HEADERS
-  mirtkClosestCell.h
-  mirtkClosestPoint.h
-  mirtkClosestPointLabel.h
-  mirtkEdgeConnectivity.h
-  mirtkEdgeTable.h
-  mirtkFiducialMatch.h
-  mirtkFuzzyCorrespondence.h
-  mirtkImplicitSurfaceUtils.h
-  mirtkPointCorrespondence.h
-  mirtkPointLocator.h
-  mirtkPointSetUtils.h
-  mirtkPolyDataCurvature.h
-  mirtkPolyDataFilter.h
-  mirtkPolyDataRemeshing.h
-  mirtkPolyDataSmoothing.h
-  mirtkPolyhedron.h
-  mirtkRegisteredPointSet.h
-  mirtkRegisteredSurface.h
-  mirtkRobustClosestPoint.h
-  mirtkRobustPointMatch.h
-  mirtkSpectralDecomposition.h
-  mirtkSpectralMatch.h
-  mirtkSurfaceCollisions.h
-  mirtkTriangle.h
+  ${BINARY_INCLUDE_DIR}/mirtk/PointSetExport.h
+  BoundarySegment.h
+  ClosestCell.h
+  ClosestPoint.h
+  ClosestPointLabel.h
+  EdgeConnectivity.h
+  EdgeTable.h
+  FiducialMatch.h
+  FuzzyCorrespondence.h
+  ImplicitSurfaceUtils.h
+  Stripper.h
+  MedianMeshFilter.h
+  MeshFilter.h
+  MeshSmoothing.h
+  PointCorrespondence.h
+  PointLocator.h
+  PointSetUtils.h
+  Polyhedron.h
+  RegisteredPointSet.h
+  RegisteredSurface.h
+  RobustClosestPoint.h
+  RobustPointMatch.h
+  SpectralDecomposition.h
+  SpectralMatch.h
+  SurfaceBoundary.h
+  SurfaceFilter.h
+  SurfaceCollisions.h
+  SurfaceCurvature.h
+  SurfacePatches.h
+  SurfaceRemeshing.h
+  Triangle.h
 )
 
 set(SOURCES
-  dfsurface.h
-  mirtkClosestCell.cc
-  mirtkClosestPoint.cc
-  mirtkClosestPointLabel.cc
-  mirtkEdgeConnectivity.cc
-  mirtkEdgeTable.cc
-  mirtkFiducialMatch.cc
-  mirtkFuzzyCorrespondence.cc
-  mirtkFuzzyCorrespondenceUtils.cc
-  mirtkFuzzyCorrespondenceUtils.h
-  mirtkImplicitSurfaceUtils.cc
-  mirtkPointCorrespondence.cc
-  mirtkPointLocator.cc
-  mirtkPointSetUtils.cc
-  mirtkPolyDataCurvature.cc
-  mirtkPolyDataFilter.cc
-  mirtkPolyDataRemeshing.cc
-  mirtkPolyDataSmoothing.cc
-  mirtkPolyhedron.cc
-  mirtkRegisteredPointSet.cc
-  mirtkRegisteredSurface.cc
-  mirtkRobustClosestPoint.cc
-  mirtkRobustPointMatch.cc
-  mirtkSpectralDecomposition.cc
-  mirtkSpectralMatch.cc
-  mirtkSurfaceCollisions.cc
+  BoundarySegment.cc
+  ClosestCell.cc
+  ClosestPoint.cc
+  ClosestPointLabel.cc
+  EdgeConnectivity.cc
+  EdgeTable.cc
+  FiducialMatch.cc
+  FuzzyCorrespondence.cc
+  FuzzyCorrespondenceUtils.cc
+  FuzzyCorrespondenceUtils.h
+  ImplicitSurfaceUtils.cc
+  Stripper.cc
+  MedianMeshFilter.cc
+  MeshFilter.cc
+  MeshSmoothing.cc
+  PointCorrespondence.cc
+  PointLocator.cc
+  PointSetUtils.cc
+  Polyhedron.cc
+  RegisteredPointSet.cc
+  RegisteredSurface.cc
+  RobustClosestPoint.cc
+  RobustPointMatch.cc
+  SpectralDecomposition.cc
+  SpectralMatch.cc
+  SurfaceBoundary.cc
+  SurfaceFilter.cc
+  SurfaceCollisions.cc
+  SurfaceCurvature.cc
+  SurfacePatches.cc
+  SurfaceRemeshing.cc
+  Triangle.cc
+  triangle_triangle_intersection.h
 )
 
 set(DEPENDS
@@ -83,11 +97,16 @@ set(DEPENDS
   LibNumerics
   LibImage
   LibTransformation
+  LibIO
   ${VTK_LIBRARIES}
 )
 
+if (TARGET TBB::tbb)
+  list(APPEND DEPENDS TBB::tbb)
+endif ()
+
 if (FLANN_FOUND)
-  list(APPEND DEPENDS ${FLANN_LIBRARY})
+  list(APPEND DEPENDS ${FLANN_CPP_LIBRARY})
 endif ()
 
 mirtk_add_library()

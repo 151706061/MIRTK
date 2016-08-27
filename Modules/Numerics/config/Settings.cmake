@@ -36,24 +36,14 @@
 # @ingroup BasisSettings
 ################################################################################
 
-if (WITH_ARPACK AND NOT WITH_UMFPACK)
-  message("${PROJECT_NAME} module WITH_ARPACK, setting also WITH_UMFPACK to ON")
-  set(WITH_UMFPACK ON CACHE BOOL "Request build with UMFPACK library" FORCE)
-elseif (NOT WITH_ARPACK AND WITH_UMFPACK)
-  message("${PROJECT_NAME} module WITH_UMFPACK, setting also WITH_ARPACK to ON")
-  set(WITH_ARPACK ON CACHE BOOL "Request build with ARPACK library" FORCE)
-endif ()
-
-set(BIG_ENDIAN_CONFIG 0)
-
 basis_set_config_option(WITH_ARPACK_CONFIG  "${ARPACK_FOUND}")
 basis_set_config_option(WITH_UMFPACK_CONFIG "${UMFPACK_FOUND}")
 basis_set_config_option(WITH_MATLAB_CONFIG  "${MATLAB_FOUND}")
 basis_set_config_option(WITH_VTK_CONFIG     "${VTK_FOUND}")
-basis_set_config_option(WITH_LBFGS_CONFIG   "${LibLBFGS_FOUND}")
+basis_set_config_option(WITH_LBFGS_CONFIG   "${LBFGS_FOUND}")
 
 configure_file(
   "${PROJECT_CONFIG_DIR}/config.h.in"
-  "${BINARY_INCLUDE_DIR}/mirtkNumericsConfig.h"
+  "${BINARY_INCLUDE_DIR}/mirtk/NumericsConfig.h"
   @ONLY
 )

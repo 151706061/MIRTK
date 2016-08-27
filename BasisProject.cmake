@@ -1,8 +1,8 @@
 # ============================================================================
 # Medical Image Registration ToolKit (MIRTK)
 #
-# Copyright 2013-2015 Imperial College London
-# Copyright 2013-2015 Andreas Schuh
+# Copyright 2013-2016 Imperial College London
+# Copyright 2013-2016 Andreas Schuh
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 # of another BASIS project, the dependencies to other modules have to be specified 
 # here such that the top-level project can analyze the inter-module dependencies.
 #
-# @sa http://opensource.andreasschuh.com/cmake-basis/standard/modules.html
+# @sa https://cmake-basis.github.io/standard/modules.html
 #
 # However, not only dependencies to other modules can be specified here,
 # but also dependencies on external packages. A more flexible alternative to
@@ -52,11 +52,11 @@ basis_project (
   # --------------------------------------------------------------------------
   # meta-data
   NAME         "MIRTK"
-  VERSION      "1.1.0" # Version of core (+ external) modules
+  VERSION      "0.0.0" # Version of core (+ external) modules
   SOVERSION    "0"     # API yet unstable
   AUTHORS      "Andreas Schuh"
   DESCRIPTION  "Medical Image Registration ToolKit"
-  COPYRIGHT    "2013-2015 Imperial College London, Andreas Schuh"
+  COPYRIGHT    "2013-2016 Imperial College London, Andreas Schuh"
   LICENSE      "Apache License Version 2.0"
   CONTACT      "Andreas Schuh <andreas.schuh.84@gmail.com>"
   TEMPLATE     "with-basis-submodule/1.0"
@@ -68,10 +68,12 @@ basis_project (
   DOC_DIR     Documentation
   MODULES_DIR Modules
   TOOLS_DIR   Applications
+  OTHER_DIRS  CMake
 
   MODULE_DIRS
     Packages/Deformable
-    Packages/VolumetricMapping
+    Packages/Mapping
+    Packages/DrawEM
 
   # --------------------------------------------------------------------------
   # list of modules enabled by default
@@ -79,7 +81,7 @@ basis_project (
     Common
     Numerics
     Image
-    ImageIO
+    IO
     Transformation
     Registration
 
@@ -87,7 +89,8 @@ basis_project (
   # list of external modules
   EXTERNAL_MODULES
     Deformable
-    VolumetricMapping
+    Mapping
+    DrawEM
 
   # --------------------------------------------------------------------------
   # dependencies
@@ -96,7 +99,7 @@ basis_project (
   OPTIONAL_DEPENDS
     #<optional-dependency>
   TOOLS_DEPENDS
-    PythonInterp
+    Python{Interp}
   TEST_DEPENDS
     #<test-dependency>
   OPTIONAL_TEST_DEPENDS

@@ -27,7 +27,7 @@
 # have to be specified here such that the top-level IRTK project can analyze the
 # inter-module dependencies, as well as dependencies on third-party libraries.
 #
-# @sa http://opensource.andreasschuh.com/cmake-basis/standard/modules.html
+# @sa https://cmake-basis.github.io/standard/modules.html
 #
 # @ingroup BasisSettings
 ################################################################################
@@ -46,7 +46,7 @@ basis_project (
   PACKAGE     "MIRTK"
   AUTHORS     "Andreas Schuh"
   DESCRIPTION "Image library of the Medical Image Registration ToolKit."
-  COPYRIGHT   "2013-2015 Imperial College London, Andreas Schuh"
+  COPYRIGHT   "2013-2016 Imperial College London, Andreas Schuh"
   LICENSE     "Apache License Version 2.0"
   CONTACT     "Andreas Schuh <andreas.schuh.84@gmail.com>"
   TEMPLATE    "mirtk-module/1.0"
@@ -57,8 +57,9 @@ basis_project (
     MIRTK{Common,Numerics}
     #<dependency>
   OPTIONAL_DEPENDS
-    TBB
+    TBB{tbb}
     VTK-7|6{vtkCommonCore,vtkCommonDataModel,vtkIOLegacy,vtkIOXML}
+    Python{Interp} # ForEachVoxelFunction.py generator script
     #<optional-dependency>
   TEST_DEPENDS
     GTest

@@ -11,12 +11,13 @@ Modules
    modules/common
    modules/numerics
    modules/image
-   modules/imageio
+   modules/io
    modules/pointset
    modules/transformation
    modules/registration
    modules/deformable
-   modules/volumetricmapping
+   modules/mapping
+   modules/drawem
 
 .. Replacements for use by descriptions included below to refer to other modules
 
@@ -54,12 +55,12 @@ Image
 :doc:`[more] <modules/image>`
 
 
-Image I/O
----------
+I/O
+---
 
-.. include:: modules/_descriptions/imageio.rst
+.. include:: modules/_descriptions/io.rst
 
-:doc:`[more] <modules/imageio>`
+:doc:`[more] <modules/io>`
 
 
 Point Set
@@ -106,9 +107,17 @@ Deformable
 :doc:`[more] <modules/deformable>`
 
 
-Volumetric Mapping
-------------------
+Mapping
+-------
 
-.. include:: modules/_descriptions/volumetricmapping.rst
+.. include:: modules/_descriptions/mapping.rst
 
-:doc:`[more] <modules/volumetricmapping>`
+:doc:`[more] <modules/mapping>`
+
+
+Draw-EM
+-------
+
+.. include:: modules/_descriptions/drawem.rst
+
+:doc:`[more] <modules/drawem>`

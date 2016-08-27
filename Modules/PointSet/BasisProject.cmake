@@ -27,7 +27,7 @@
 # have to be specified here such that the top-level IRTK project can analyze the
 # inter-module dependencies, as well as dependencies on third-party libraries.
 #
-# @sa http://opensource.andreasschuh.com/cmake-basis/standard/modules.html
+# @sa https://cmake-basis.github.io/standard/modules.html
 #
 # @ingroup BasisSettings
 ################################################################################
@@ -46,7 +46,7 @@ basis_project (
   PACKAGE     "MIRTK"
   AUTHORS     "Andreas Schuh"
   DESCRIPTION "Point Set library of the Medical Image Registration ToolKit."
-  COPYRIGHT   "2013-2015 Imperial College London, Andreas Schuh"
+  COPYRIGHT   "2013-2016 Imperial College London, Andreas Schuh"
   LICENSE     "Apache License Version 2.0"
   CONTACT     "Andreas Schuh <andreas.schuh.84@gmail.com>"
   TEMPLATE    "mirtk-module/1.0"
@@ -54,7 +54,7 @@ basis_project (
   # ----------------------------------------------------------------------------
   # dependencies
   DEPENDS
-    MIRTK{Common,Numerics,Image,Transformation}
+    MIRTK{Common,Numerics,Image,Transformation,IO}
     Boost-1.48 # {random} used, but headers only
     Eigen3
     "VTK-7|6{
@@ -67,16 +67,12 @@ basis_project (
       vtkFiltersGeneral,
       vtkFiltersGeometry,
       vtkFiltersParallel,
-      vtkImagingStencil,
-      vtkIOGeometry,
-      vtkIOLegacy,
-      vtkIOPLY,
-      vtkIOXML
+      vtkImagingStencil
     }"
     #<dependency>
   OPTIONAL_DEPENDS
-    FLANN
-    TBB
+    FLANN{cpp_static}
+    TBB{tbb}
     #<optional-dependency>
   TEST_DEPENDS
     GTest

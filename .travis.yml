@@ -1,0 +1,18 @@
+language: cpp
+
+compiler:
+  - g++
+  - clang
+
+os:
+  - linux
+  - osx
+
+dist: trusty
+sudo: required
+
+before_install: Scripts/install_depends.sh
+script:         Scripts/travis.sh
+
+notifications:
+  email: false

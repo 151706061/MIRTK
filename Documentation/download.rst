@@ -33,16 +33,13 @@ To download the latest MIRTK source files using Git_, use the following
 
 .. code-block:: bash
 
-    git clone --branch master --depth 1 -- https://github.com/BioMedIA/MIRTK.git
+    git clone --depth 1 -- https://github.com/BioMedIA/MIRTK.git
     MIRTK_SOURCE_DIR="$PWD/MIRTK"
 
-where the ``--branch master --depth 1`` options request a shallow clone of the current
-stable version of the source files excluding previous revisions in order to save bandwidth,
+where the ``--depth 1`` options request a shallow clone of the current development
+version of the source files excluding previous revisions in order to save bandwidth,
 download time, and disk space. The ``--depth`` option may be omitted if you want to
-see the development history and contribute to the MIRTK. To download the latest
-development version, use the ``--branch develop`` option. Note that branches can be
-switched also after the initial clone command using the
-`git checkout <https://git-scm.com/docs/git-checkout>`__ command. To update an existing
+see the development history and contribute to the MIRTK. To update an existing
 copy of the BioMedIA/MIRTK repository, use the `git pull <https://git-scm.com/docs/git-pull>`__
 command. Note that submodules also have to be updated in this case using the commands below.
 
@@ -64,17 +61,25 @@ of the downloaded MIRTK repository:
    only selected additional files, run one or more of the following commands.
 
 The MIRTK group hosts Git submodule repositories with copies of the Boost_ and Eigen_
-library header files required to build some of the core modules of the MIRTK
+library header files required to build the core modules of the MIRTK
 (see `MIRTK/Boost <https://github.com/MIRTK/Boost>`__ and
-`MIRTK/Eigen <https://github.com/MIRTK/Eigen>`__ projects on GitHub).
-Either install a compatible version of these libraries using the official installation
-packages available for your operating system or initialize the desired Git submodules
-before configuring the MIRTK build:
+`MIRTK/Eigen <https://github.com/MIRTK/Eigen>`__ projects on GitHub). Note that
+these unofficial copies may not be suitable to build also the optional MIRTK Packages
+below if these require additional header files not included in these repositories.
+It is therefore recommended to install a compatible version of Boost and Eigen using
+the official installation packages available for your operating system instead.
+Other optional third-party libraries for which no binary installation packages for the
+supported operating systems exists are included as Git submodules under the ThirdParty/
+subdirectory of the MIRTK project. To download these third-party source files,
+run the following command(s):
 
 .. code-block:: bash
 
-    git submodule update --init -- ThirdParty/Boost
-    git submodule update --init -- ThirdParty/Eigen
+    # Either download all third-party modules at once
+    git submodule update --init -- ThirdParty
+
+    # Or download one or more of the following modules only
+    git submodule update --init -- ThirdParty/LBFGS
 
 The source files of core MIRTK modules are included in the top-level MIRTK repository
 under the Modules/ subdirectory. Further optional packages which are developed and
@@ -84,8 +89,13 @@ update the desired Git submodules before (re-)configuring the build files, e.g.:
 
 .. code-block:: bash
 
+    # Either download all additional packages at once
+    git submodule update --init -- Packages
+
+    # Or download one or more of the following packages only
     git submodule update --init -- Packages/Deformable
-    git submodule update --init -- Packages/VolumetricMapping
+    git submodule update --init -- Packages/Mapping
+    git submodule update --init -- Packages/DrawEM
 
 
 .. _Git:   https://git-scm.com
@@ -114,4 +124,5 @@ with the MIRTK license. See the following links for details:
 - `ThirdParty/Boost <https://github.com/MIRTK/Boost>`__: `Boost Software License Version 1.0 <http://www.boost.org/users/license.html>`__
 - `ThirdParty/Eigen <https://github.com/MIRTK/Eigen>`__: `Mozilla Public License Version 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>`__
 - `ThirdParty/LBFGS <https://github.com/BioMedIA/MIRTK/tree/master/ThirdParty/LBFGS>`__: `The MIT License <https://opensource.org/licenses/MIT>`__
-- `ThirdParty/NIfTI <https://github.com/BioMedIA/MIRTK/tree/master/ThirdParty/NIfTI>`__: `Public domain <https://en.wikipedia.org/wiki/Public_domain>`__
+- `NIfTI C library <https://www.nitrc.org/projects/nifti>`__: `Public domain <https://en.wikipedia.org/wiki/Public_domain>`__
+- `GIFTI C library <https://www.nitrc.org/projects/gifti/>`__: `Public domain <https://en.wikipedia.org/wiki/Public_domain>`__

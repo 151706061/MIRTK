@@ -17,16 +17,16 @@
  * limitations under the License.
  */
 
-#include <mirtkCommon.h>
-#include <mirtkOptions.h>
+#include "mirtk/Common.h"
+#include "mirtk/Options.h"
 
-#include <mirtkEdgeTable.h>
-#include <mirtkPointSetUtils.h>
+#include "mirtk/EdgeTable.h"
+#include "mirtk/PointSetIO.h"
 
-#include <vtkSmartPointer.h>
-#include <vtkPolyData.h>
+#include "vtkSmartPointer.h"
+#include "vtkPolyData.h"
 
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 using namespace mirtk;
 
@@ -46,7 +46,7 @@ TEST(EdgeTable, Initialize)
 {
   // Read input point set
   ASSERT_TRUE(input_name != nullptr) << "input point set given";
-  vtkSmartPointer<vtkPolyData> input = ReadPolyData(input_name, NULL, false);
+  vtkSmartPointer<vtkPolyData> input = ReadPolyData(input_name, false);
   const int npoints = static_cast<int>(input->GetNumberOfPoints());
   ASSERT_GT(npoints, 0) << "input point set contains points";
 
@@ -90,7 +90,7 @@ TEST(EdgeTable, EdgeIterator)
 
   // Read input point set
   ASSERT_TRUE(input_name != nullptr) << "input point set given";
-  vtkSmartPointer<vtkPolyData> input = ReadPolyData(input_name, NULL, false);
+  vtkSmartPointer<vtkPolyData> input = ReadPolyData(input_name, false);
   ASSERT_TRUE(input->GetNumberOfPoints() > 0) << "input point set contains points";
 
   // Construct edge table and iterator
